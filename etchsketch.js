@@ -10,3 +10,9 @@ Problems:
 them in a div container which can go directly into your HTML file.
 
 */
+
+// This is to create a square div.
+
+const container = document.querySelector('.container');
+const square1 = document.createElement('div');
+container.appendChild(square1);
