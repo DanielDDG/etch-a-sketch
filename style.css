@@ -9,25 +9,38 @@ h1 {
     margin-bottom: 0;
 }
 
+button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 35px;
+    width: 90px;
+}
+
+.dimensions {
+    display: block;
+}
+
 .github {
     margin-top: -14px;
     text-align: center;
-    outline: 1px solid black;
 }
 
 .container {
+    display: grid;
+    grid-template-columns: repeat(16, auto);
+    grid-template-rows: repeat(16, auto);
     margin: auto;
     margin-top: 30px;
     font-size: 0;
-    height: 350px;
-    width: 350px;
+    height: 700px;
+    width: 700px;
+    border: 3px solid black;
 }
 
 .square {
     display: inline-block;
-    outline: 1px groove grey;
-    height: 21px;
-    width: 21px;
+    outline: 1px dotted gainsboro;
 }
 
 div.square:hover {
