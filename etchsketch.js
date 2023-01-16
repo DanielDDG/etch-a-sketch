@@ -3,7 +3,12 @@
 const container = document.querySelector('#container');
 const set = document.querySelector('.set');
 const reset = document.querySelector('.reset');
+const shader = document.querySelector('.shader');
+const rainbow = document.querySelector('.rainbow');
+const normal = document.querySelector('.normal');
+let resetDimension = 0;
 let drawing = false;
+let mode = 'normal';
 container.classList.add('container');
 
 // Creates the starting, default grid.
@@ -15,6 +20,7 @@ createGrid(16);
 function setDimension() {
 
     let input = prompt('How many boxes would you like on each side?')
+    resetDimension = input;
     if (input > 100) {
         alert('Please enter a number from 1 to 100.')
     } else {
@@ -37,21 +43,53 @@ function createGrid(input) {
         squares[i] = document.createElement('div');
         squares[i].classList.add('square');
         container.appendChild(squares[i]);
-        
-        squares[i].addEventListener('mousedown', () => {
+
+        console.log(mode);
+
+        if (mode === 'normal') {
+            squares[i].addEventListener('mousedown', () => {
             squares[i].setAttribute('style', 'background-color: black;');
             drawing = true;
-        });
-        
-        squares[i].addEventListener('mousemove', () => {
-            if (drawing) {
-                squares[i].setAttribute('style', 'background-color: black;');
+            });
+            squares[i].addEventListener('mousemove', () => {
+                if (drawing) {
+                    squares[i].setAttribute('style', 'background-color: black;');
+                }
+            });
+            squares[i].addEventListener('mouseup', () => {
+                drawing = false;
+            });
+        } else if (mode === 'shader') {
+            for (k = 0; k < 10; k++) {
+                let j = 0.1;
+                j += j;
+                squares[i].addEventListener('mousedown', () => {
+                    squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
+                    drawing = true;
+                    });
+                squares[i].addEventListener('mousemove', () => {
+                    if (drawing) {
+                        squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
+                    }
+                    });
             }
-        });
-        
-        squares[i].addEventListener('mouseup', () => {
+            squares[i].addEventListener('mouseup', () => {
             drawing = false;
-        });
+            });
+        } else {
+            squares[i].addEventListener('mousedown', () => {
+            squares[i].setAttribute('style', 'background-color: rainbow;');
+            drawing = true;
+            });
+            squares[i].addEventListener('mousemove', () => {
+                if (drawing) {
+                    squares[i].setAttribute('style', 'background-color: rainbow;');
+                }
+            });
+            squares[i].addEventListener('mouseup', () => {
+            drawing = false;
+            });
+        }
     }
 }
 
@@ -66,12 +104,33 @@ function removeGrid() {
     }
 }
 
-// Function that resets the grid.
+// Function that resets the grid on current dimension.
 
 function resetGrid () {
-    removeGrid();
-    createGrid(16);
+
+    let getSquares = document.getElementById("container");
+    squareLength = getSquares.length;
+
+    while (getSquares.firstChild) {
+        getSquares.removeChild(getSquares.lastChild);
+    }
+
+    createGrid(resetDimension);
 }
+
+// Adding event listeners.
 
 set.addEventListener('click', setDimension);
 reset.addEventListener('click', resetGrid);
+shader.addEventListener('click', () => {
+    mode = 'shader';
+    resetGrid();
+});
+rainbow.addEventListener('click', () => {
+    mode = 'rainbow';
+    resetGrid();
+});
+normal.addEventListener('click', () => {
+    mode = 'normal';
+    resetGrid();
+});

@@ -1,5 +1,5 @@
 html {
-    background-color: rgb(158, 116, 81);
+    background-color: rgb(116, 109, 104);
 }
 
 body {
@@ -14,11 +14,11 @@ h1 {
 }
 
 .buttons {
-    padding: 0;
+
     display: flex;
     height: 100px;
-    width: 160px;
-    gap: 5px;
+    width: 300px;
+    gap: 30px;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
@@ -28,12 +28,32 @@ h1 {
 
 .set {
     height: 50px;
-    width: 120px;
+    width: 200px;
+    background-color: rgb(185, 219, 209);
 }
 
 .reset {
     height: 50px;
+    width: 200px;
+    background-color: rgb(185, 219, 209);
+}
+
+.rainbow {
+    height: 50px;
     width: 150px;
+    background-color: rgb(185, 219, 209);
+}
+
+.shader {
+    height: 50px;
+    width: 150px;
+    background-color: rgb(185, 219, 209);
+}
+
+.normal {
+    height: 50px;
+    width: 150px;
+    background-color: rgb(185, 219, 209);
 }
 
 .dimensions {
@@ -66,3 +86,24 @@ h1 {
 div.square:hover {
     background-color: black;
 }
+
+button:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: 3px 3px 5px rgba(1, 1, 0, .7);
+}
+
+button.rainbow:hover {
+    animation-name: rainbow;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rainbow {
+    0% { background-color: #fc0303 }
+    17% { background-color: #45f52a }
+    34% { background-color: #2a7bf5 }
+    51% { background-color: #2af5e4 }
+    68% { background-color: #c92af5 }
+    85% { background-color: #f5dd2a }
+    100% { background-color: #66655d }
+  }
