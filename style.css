@@ -19,14 +19,17 @@ h1 {
     margin: auto;
     margin-top: 30px;
     font-size: 0;
-    border: 1px solid black;
     height: 350px;
     width: 350px;
 }
 
 .square {
     display: inline-block;
-    border: 1px solid black;
-    height: 19px;
-    width: 19px;
+    outline: 1px groove grey;
+    height: 21px;
+    width: 21px;
+}
+
+div.square:hover {
+    background-color: black;
 }
