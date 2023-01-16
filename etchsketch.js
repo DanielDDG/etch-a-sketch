@@ -1,12 +1,14 @@
 // Creates HTML elements and initializes variables.
 
-const container = document.querySelector('.container');
-const button = document.querySelector('button');
-const square = document.createElement('div');
-const allSquares = document.getElementsByClassName('square');
+const container = document.querySelector('#container');
+const set = document.querySelector('.set');
+const reset = document.querySelector('.reset');
 let drawing = false;
-square.classList.add('square');
-container.appendChild(square);
+container.classList.add('container');
+
+// Creates the starting, default grid.
+
+createGrid(16);
 
 // Function that prompts user to set dimensions.
 
@@ -16,6 +18,7 @@ function setDimension() {
     if (input > 100) {
         alert('Please enter a number from 1 to 100.')
     } else {
+        removeGrid();
         createGrid(input);
     }
 }
@@ -24,28 +27,13 @@ function setDimension() {
 
 function createGrid(input) {
 
-    square.addEventListener('mousedown', () => {
-        square.setAttribute('style', 'background-color: black;');
-        drawing = true;
-    });
-    
-    square.addEventListener('mousemove', () => {
-        if (drawing) {
-            square.setAttribute('style', 'background-color: black;');
-        }
-    });
-    
-    square.addEventListener('mouseup', () => {
-        drawing = false;
-    });
-    
-    const squares = [input];
-    
-    container.style.gridTemplateColumns = 'repeat(' + input + ', auto)';
-    container.style.gridTemplateRows = 'repeat(' + input + ', auto)';
-    
+    let userInput = input;
+    const squares = [userInput];
 
-    for (let i = 0; i <= input * input - 2; i++) {
+    container.style.gridTemplateColumns = 'repeat(' + userInput + ', auto)';
+    container.style.gridTemplateRows = 'repeat(' + userInput + ', auto)';
+    
+    for (let i = 1; i <= userInput * userInput; i++) {
         squares[i] = document.createElement('div');
         squares[i].classList.add('square');
         container.appendChild(squares[i]);
@@ -63,9 +51,27 @@ function createGrid(input) {
         
         squares[i].addEventListener('mouseup', () => {
             drawing = false;
-        });        
+        });
     }
 }
 
-createGrid(5);
-button.addEventListener('click', setDimension);
+// Function that removes the created grid.
+
+function removeGrid() {
+
+    const getSquares = document.getElementById("container");
+
+    while (getSquares.firstChild) {
+        getSquares.removeChild(getSquares.lastChild);
+    }
+}
+
+// Function that resets the grid.
+
+function resetGrid () {
+    removeGrid();
+    createGrid(16);
+}
+
+set.addEventListener('click', setDimension);
+reset.addEventListener('click', resetGrid);
