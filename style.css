@@ -13,6 +13,10 @@ h1 {
     margin-bottom: 0;
 }
 
+a {
+    color: black;
+}
+
 .buttons {
 
     display: flex;
