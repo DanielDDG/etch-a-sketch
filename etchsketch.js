@@ -119,6 +119,8 @@ function resetGrid() {
     createGrid(resetDimension);
 }
 
+// Generates random color for the rainbow grid.
+
 function rainbowMode() {
 
     let rainbow = 'background-color: rgb(' + Math.floor(Math.random() * 255) + ', '
