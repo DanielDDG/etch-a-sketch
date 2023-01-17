@@ -6,15 +6,15 @@ This program is a browser version of an Etch-A-Sketch. Creating this program con
 
 ### Technologies
 
-HTML
-CSS
-JavaScript
+* HTML
+* CSS
+* JavaScript
 
 ### Tools
 
-Visual Studio Code
-Linux Terminal
-Git & GitHub
+* Visual Studio Code
+* Linux Terminal
+* Git & GitHub
 
 ### Summary
 
