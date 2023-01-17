@@ -6,7 +6,7 @@ const reset = document.querySelector('.reset');
 const shader = document.querySelector('.shader');
 const rainbow = document.querySelector('.rainbow');
 const normal = document.querySelector('.normal');
-let resetDimension = 0;
+let resetDimension = 16;
 let drawing = false;
 let mode = 'normal';
 container.classList.add('container');
@@ -34,6 +34,7 @@ function setDimension() {
 function createGrid(input) {
 
     let userInput = input;
+    let j = 0.1;
     const squares = [userInput];
 
     container.style.gridTemplateColumns = 'repeat(' + userInput + ', auto)';
@@ -44,15 +45,15 @@ function createGrid(input) {
         squares[i].classList.add('square');
         container.appendChild(squares[i]);
 
-        console.log(mode);
-
         if (mode === 'normal') {
             squares[i].addEventListener('mousedown', () => {
-            squares[i].setAttribute('style', 'background-color: black;');
-            drawing = true;
+                j = j + 0.1;
+                squares[i].setAttribute('style', 'background-color: black;');
+                drawing = true;
             });
             squares[i].addEventListener('mousemove', () => {
                 if (drawing) {
+                    j = j + 0.1;
                     squares[i].setAttribute('style', 'background-color: black;');
                 }
             });
@@ -60,37 +61,44 @@ function createGrid(input) {
                 drawing = false;
             });
         } else if (mode === 'shader') {
-            for (k = 0; k < 10; k++) {
-                let j = 0.1;
-                j += j;
-                squares[i].addEventListener('mousedown', () => {
-                    squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
-                    drawing = true;
-                    });
-                squares[i].addEventListener('mousemove', () => {
-                    if (drawing) {
-                        squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
-                    }
-                    });
-            }
-            squares[i].addEventListener('mouseup', () => {
-            drawing = false;
-            });
-        } else {
             squares[i].addEventListener('mousedown', () => {
-            squares[i].setAttribute('style', 'background-color: rainbow;');
-            drawing = true;
+                j = j + 0.1;
+                squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
+                drawing = true;
             });
             squares[i].addEventListener('mousemove', () => {
                 if (drawing) {
+                    j = j + 0.1;
+                    squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
+                }
+            });
+            squares[i].addEventListener('mouseup', () => {
+                drawing = false;
+            }); 
+        } else {
+            squares[i].addEventListener('mousedown', () => {
+                j = j + 0.1;
+                squares[i].setAttribute('style', 'background-color: rainbow;');
+                drawing = true;
+            });
+            squares[i].addEventListener('mousemove', () => {
+                if (drawing) {
+                    j = j + 0.1;
                     squares[i].setAttribute('style', 'background-color: rainbow;');
                 }
             });
             squares[i].addEventListener('mouseup', () => {
-            drawing = false;
+                drawing = false;
             });
         }
     }
+}
+
+// Function that creates event listerns for the normal grid.
+
+function normalEventListener() {
+    squares[i].setAttribute('style', 'background-color: black;');
+    drawing = true;
 }
 
 // Function that removes the created grid.
