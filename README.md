@@ -16,9 +16,7 @@ This program is a browser version of an Etch-A-Sketch. Creating this program con
 * Linux Terminal
 * Git & GitHub
 
-### Summary
-
-## Things Learned
+### Things Learned
 
 * Became more comfortable with JavaScript & CSS.
 * Experience with Flexbox styling.
