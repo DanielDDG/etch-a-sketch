@@ -127,14 +127,6 @@ function rainbowMode() {
     return rainbow;
 }
 
-function shaderMode() {
-
-    for (let i = 0.1; i <= 1.1; i += 0.1) {
-        let shader = 'background-color: rgba(0, 0, 0, ' + i +')';
-        return shader;
-    }
-}
-
 // Adding event listeners.
 
 set.addEventListener('click', setDimension);
