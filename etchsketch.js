@@ -78,13 +78,13 @@ function createGrid(input) {
         } else {
             squares[i].addEventListener('mousedown', () => {
                 j = j + 0.1;
-                squares[i].setAttribute('style', 'background-color: rainbow;');
+                squares[i].setAttribute('style', rainbowMode());
                 drawing = true;
             });
             squares[i].addEventListener('mousemove', () => {
                 if (drawing) {
                     j = j + 0.1;
-                    squares[i].setAttribute('style', 'background-color: rainbow;');
+                    squares[i].setAttribute('style', rainbowMode());
                 }
             });
             squares[i].addEventListener('mouseup', () => {
@@ -92,13 +92,6 @@ function createGrid(input) {
             });
         }
     }
-}
-
-// Function that creates event listerns for the normal grid.
-
-function normalEventListener() {
-    squares[i].setAttribute('style', 'background-color: black;');
-    drawing = true;
 }
 
 // Function that removes the created grid.
@@ -114,7 +107,7 @@ function removeGrid() {
 
 // Function that resets the grid on current dimension.
 
-function resetGrid () {
+function resetGrid() {
 
     let getSquares = document.getElementById("container");
     squareLength = getSquares.length;
@@ -125,6 +118,16 @@ function resetGrid () {
 
     createGrid(resetDimension);
 }
+
+function rainbowMode() {
+
+    let rainbow = 'background-color: rgb(' + Math.floor(Math.random() * 255) + ', '
+                                           + Math.floor(Math.random() * 255) + ', '
+                                           + Math.floor(Math.random() * 255) + ')';           
+    return rainbow;
+}
+
+rainbowMode();
 
 // Adding event listeners.
 
