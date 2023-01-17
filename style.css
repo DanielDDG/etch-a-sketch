@@ -80,7 +80,6 @@ h1 {
 
 .square {
     display: inline-block;
-    outline: 1px dotted gainsboro;
 }
 
 div.square:hover {

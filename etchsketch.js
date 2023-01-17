@@ -34,7 +34,6 @@ function setDimension() {
 function createGrid(input) {
 
     let userInput = input;
-    let j = 0.1;
     const squares = [userInput];
 
     container.style.gridTemplateColumns = 'repeat(' + userInput + ', auto)';
@@ -47,13 +46,11 @@ function createGrid(input) {
 
         if (mode === 'normal') {
             squares[i].addEventListener('mousedown', () => {
-                j = j + 0.1;
                 squares[i].setAttribute('style', 'background-color: black;');
                 drawing = true;
             });
             squares[i].addEventListener('mousemove', () => {
                 if (drawing) {
-                    j = j + 0.1;
                     squares[i].setAttribute('style', 'background-color: black;');
                 }
             });
@@ -61,15 +58,20 @@ function createGrid(input) {
                 drawing = false;
             });
         } else if (mode === 'shader') {
+            let shade = 0.1;
             squares[i].addEventListener('mousedown', () => {
-                j = j + 0.1;
-                squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
+                squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, ' + shade +')');
+                if (shade < 1) {
+                    shade += 0.1;
+                }
                 drawing = true;
             });
             squares[i].addEventListener('mousemove', () => {
                 if (drawing) {
-                    j = j + 0.1;
-                    squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, '+ j +');');
+                    squares[i].setAttribute('style', 'background-color: rgba(0, 0, 0, ' + shade +')');
+                    if (shade < 1) {
+                        shade += 0.1;
+                    }
                 }
             });
             squares[i].addEventListener('mouseup', () => {
@@ -77,13 +79,11 @@ function createGrid(input) {
             }); 
         } else {
             squares[i].addEventListener('mousedown', () => {
-                j = j + 0.1;
                 squares[i].setAttribute('style', rainbowMode());
                 drawing = true;
             });
             squares[i].addEventListener('mousemove', () => {
                 if (drawing) {
-                    j = j + 0.1;
                     squares[i].setAttribute('style', rainbowMode());
                 }
             });
@@ -127,7 +127,13 @@ function rainbowMode() {
     return rainbow;
 }
 
-rainbowMode();
+function shaderMode() {
+
+    for (let i = 0.1; i <= 1.1; i += 0.1) {
+        let shader = 'background-color: rgba(0, 0, 0, ' + i +')';
+        return shader;
+    }
+}
 
 // Adding event listeners.
 
