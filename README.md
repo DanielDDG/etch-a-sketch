@@ -1,8 +1,8 @@
-# Etch-A-Sketch
+# Admin Dashboard
 
-This program is a browser version of an Etch-A-Sketch. Creating this program consisted of learning about creating grids and several other capabilities of HTML, CSS, and JavaScript.
+Layout first designed admin dashboard webpage which contains links to several projects, uses icons, and features use of Grid & Flexbox together.
 
-🔗 **Live Preview:** [Link](https://danielddg.github.io/etch-a-sketch/)
+🔗 **Live Preview:** [Link](https://danielddg.github.io/admin-dashboard/)
 
 ### Technologies
 
@@ -18,7 +18,7 @@ This program is a browser version of an Etch-A-Sketch. Creating this program con
 
 ### Things Learned
 
-* Became more comfortable with JavaScript & CSS.
-* Experience with Flexbox styling.
+* Learned the basics of CSS Grid.
+* More experience with Flexbox styling.
 * Writing cleaner code.
 * Improved aesthetic design of webpages.
